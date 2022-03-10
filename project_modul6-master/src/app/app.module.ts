@@ -21,6 +21,11 @@ import {HttpClientModule} from "@angular/common/http";
 import {AuthService} from "./service/auth.service";
 import { LoginComponent } from './sign/login/login.component';
 import { UserAccountComponent } from './sign/user-account/user-account.component';
+import {AngularFireModule} from "@angular/fire/compat";
+import {AngularFireStorageModule} from "@angular/fire/compat/storage";
+import {environment} from "../environments/environment";
+import { UploadAvatarComponent } from './upload/upload-avatar/upload-avatar.component';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -31,6 +36,7 @@ import { UserAccountComponent } from './sign/user-account/user-account.component
     RegisterComponent,
     LoginComponent,
     UserAccountComponent,
+    UploadAvatarComponent,
 
   ],
   imports: [
@@ -47,7 +53,10 @@ import { UserAccountComponent } from './sign/user-account/user-account.component
     MatIconModule,
     MatButtonModule,
     MatDialogModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
+    MatProgressSpinnerModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

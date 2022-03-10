@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Router} from "@angular/router";
+const ID_KEY = 'Id_Key';
 const TOKEN_KEY = 'Token_Key';
 const NAME_KEY = 'Name_Key';
 const ROLE_KEY = 'Role_Key';
@@ -10,6 +11,17 @@ export class TokenService {
 
   private roles: Array<string> = [];
   constructor(private router: Router) { }
+
+  //dang bi sai kieu, id number sang id string
+  public setId(id:number){
+    window.sessionStorage.removeItem(ID_KEY);
+    window.sessionStorage.setItem(ID_KEY, String(id))
+  }
+  public getId(): string{
+    // @ts-ignore
+    return window.sessionStorage.getItem(ID_KEY);
+  }
+
   public setToken(token: string) {
     window.sessionStorage.removeItem(TOKEN_KEY);
     window.sessionStorage.setItem(TOKEN_KEY, token)
